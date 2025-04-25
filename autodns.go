@@ -65,9 +65,6 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 				if d.NextArg() {
 					return d.ArgErr()
 				}
-			default:
-				return d.Errf("unrecognized subdirective '%s'", d.Val())
-			}
 			case "Endpoint":
 				if p.Provider.Endpoint != "" {
 					return d.Err("Endpoint already set")
@@ -88,6 +85,9 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 				if d.NextArg() {
 					return d.ArgErr()
 				}
+			default:
+				return d.Errf("unrecognized subdirective '%s'", d.Val())
+			}
 		}
 	}
 	if p.Provider.Username == "" {
