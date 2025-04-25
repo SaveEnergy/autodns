@@ -33,11 +33,12 @@ func (p *Provider) Provision(ctx caddy.Context) error {
 // UnmarshalCaddyfile sets up the DNS provider from Caddyfile tokens. Syntax:
 //
 //	autodns {
-//	    secret_key string
-//	    organization_id string
+//	    username {env.AUTODNS_USERNAME}
+//			password {env.AUTODNS_PASSWORD}
+//			endpoint {env.AUTODNS_ENDPOINT}
+//			context {env.AUTODNS_CONTEXT}
 //	}
 //
-// **THIS IS JUST AN EXAMPLE AND NEEDS TO BE CUSTOMIZED.**
 func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 	for d.Next() {
 		if d.NextArg() {

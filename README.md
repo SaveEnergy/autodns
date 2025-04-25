@@ -39,8 +39,10 @@ Caddyfile configuration
 ```
 {
   acme_dns autodns {
-    username "<username>"
-    password "<password>"
+    username {env.AUTODNS_USERNAME}
+		password {env.AUTODNS_PASSWORD}
+		endpoint {env.AUTODNS_ENDPOINT}
+		context {env.AUTODNS_CONTEXT}
   }
 }
 ```
