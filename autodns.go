@@ -35,8 +35,8 @@ func (p *Provider) Provision(ctx caddy.Context) error {
 //	autodns {
 //	    username {env.AUTODNS_USERNAME}
 //			password {env.AUTODNS_PASSWORD}
-//			endpoint {env.AUTODNS_ENDPOINT}
-//			context {env.AUTODNS_CONTEXT}
+//			endpoint {env.AUTODNS_ENDPOINT} (Optional)
+//			context {env.AUTODNS_CONTEXT} (Optional)
 //	}
 //
 func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
@@ -66,7 +66,7 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 				if d.NextArg() {
 					return d.ArgErr()
 				}
-			case "Endpoint":
+			case "endpoint":
 				if p.Provider.Endpoint != "" {
 					return d.Err("Endpoint already set")
 				}
@@ -92,16 +92,10 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 		}
 	}
 	if p.Provider.Username == "" {
-		return d.Err("missing Secret key")
+		return d.Err("missing Username")
 	}
 	if p.Provider.Password == "" {
-		return d.Err("missing Organization ID")
-	}
-	if p.Provider.Endpoint == "" {
-		return d.Err("missing Endpoint")
-	}
-	if p.Provider.Context == "" {
-		return d.Err("missing Context")
+		return d.Err("missing Password")
 	}
 	return nil
 }
