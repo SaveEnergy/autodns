@@ -3,7 +3,7 @@ package autodns
 import (
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
-	"github.com/libdns/autodns"
+	autodns "github.com/saveenergy/libdns-autodns"
 )
 
 // Provider lets Caddy read and manipulate DNS records hosted by this DNS provider.
@@ -23,22 +23,22 @@ func (Provider) CaddyModule() caddy.ModuleInfo {
 
 // Provision sets up the module. Implements caddy.Provisioner.
 func (p *Provider) Provision(ctx caddy.Context) error {
-	p.Provider.Username = caddy.NewReplacer().ReplaceAll(p.Provider.Username, "")
-	p.Provider.Password = caddy.NewReplacer().ReplaceAll(p.Provider.Password, "")
-	p.Provider.Endpoint = caddy.NewReplacer().ReplaceAll(p.Provider.Endpoint, "")
-	p.Provider.Context = caddy.NewReplacer().ReplaceAll(p.Provider.Context, "")
+	repl := caddy.NewReplacer()
+	p.Provider.Username = repl.ReplaceAll(p.Provider.Username, "")
+	p.Provider.Password = repl.ReplaceAll(p.Provider.Password, "")
+	p.Provider.Endpoint = repl.ReplaceAll(p.Provider.Endpoint, "")
+	p.Provider.Context = repl.ReplaceAll(p.Provider.Context, "")
 	return nil
 }
 
 // UnmarshalCaddyfile sets up the DNS provider from Caddyfile tokens. Syntax:
 //
 //	autodns {
-//	    username {env.AUTODNS_USERNAME}
-//			password {env.AUTODNS_PASSWORD}
-//			endpoint {env.AUTODNS_ENDPOINT} (Optional)
-//			context {env.AUTODNS_CONTEXT} (Optional)
+//	    username <username>
+//		password <password>
+//		endpoint <endpoint> (Optional)
+//		context <context> (Optional)
 //	}
-//
 func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 	for d.Next() {
 		if d.NextArg() {
@@ -58,7 +58,7 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 				}
 			case "password":
 				if p.Provider.Password != "" {
-					return d.Err("Organization ID already set")
+					return d.Err("Password already set")
 				}
 				if d.NextArg() {
 					p.Provider.Password = d.Val()
@@ -87,15 +87,15 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 					return d.ArgErr()
 				}
 			default:
-				return d.Errf("unrecognized subdirective '%s'", d.Val())
+				return d.Errf("Unrecognized subdirective '%s'", d.Val())
 			}
 		}
 	}
 	if p.Provider.Username == "" {
-		return d.Err("missing Username")
+		return d.Err("Missing username")
 	}
 	if p.Provider.Password == "" {
-		return d.Err("missing Password")
+		return d.Err("Missing password")
 	}
 	return nil
 }
