@@ -4,7 +4,7 @@ go 1.24
 
 require (
 	github.com/caddyserver/caddy/v2 v2.10.0
-	github.com/saveenergy/libdns-autodns v1.0.3
+	github.com/saveenergy/libdns-autodns v1.0.4
 )
 
 require (
