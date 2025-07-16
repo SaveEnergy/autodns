@@ -115,8 +115,8 @@ github.com/quic-go/qpack v0.5.1/go.mod h1:+PC4XFrEskIVkcLzpEkbLqq1uCoxPhQuvK5rH1
 github.com/quic-go/quic-go v0.51.0 h1:K8exxe9zXxeRKxaXxi/GpUqYiTrtdiWP8bo1KFya6Wc=
 github.com/quic-go/quic-go v0.51.0/go.mod h1:MFlGGpcpJqRAfmYi6NC2cptDPSxRWTOGNuP4wqrWmzQ=
 github.com/russross/blackfriday v1.5.2/go.mod h1:JO/DiYxRf+HjHt06OyowR9PTA263kcR/rfWxYHBV53g=
-github.com/saveenergy/libdns-autodns v1.0.4 h1:w44UfqWiUtEq1epSSWKXcBjOo2xkr4N2ufst+9cw2gA=
-github.com/saveenergy/libdns-autodns v1.0.4/go.mod h1:JYXK/UW1+3BpzhgE4C+5XdgHxzsCYv2ZKgJ2UfaN2LQ=
+github.com/saveenergy/libdns-autodns v1.0.6 h1:xLXGH9LaGlZLAC+3+5X7Eb2XaALkmzwFwprZnmbejgo=
+github.com/saveenergy/libdns-autodns v1.0.6/go.mod h1:JYXK/UW1+3BpzhgE4C+5XdgHxzsCYv2ZKgJ2UfaN2LQ=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
 github.com/shurcooL/component v0.0.0-20170202220835-f88ec8f54cc4/go.mod h1:XhFIlyj5a1fBNx5aJTbKoIq0mNaPvOagO+HjB3EtxrY=
 github.com/shurcooL/events v0.0.0-20181021180414-410e4ca65f48/go.mod h1:5u70Mqkb5O5cxEA8nxTsgrgLehJeAw6Oc4Ab1c/P1HM=
